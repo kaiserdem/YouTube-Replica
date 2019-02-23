@@ -43,14 +43,18 @@ class VideoCell: UICollectionViewCell { //Ячейка
   
   let thumbnailImageView: UIImageView = { // эскиз изображения
     let imageView = UIImageView()
-    imageView.backgroundColor = UIColor.blue
     imageView.image = UIImage(named: "homeWithDemon")
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
     return imageView
   }()
   
   let userProfileImageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = UIColor.green
+    imageView.image = UIImage(named: "monro")
+    imageView.contentMode = .scaleAspectFill
+    imageView.layer.cornerRadius = 22 // круговое вю, коловина высоты
+    imageView.layer.masksToBounds = true
     return imageView
   }()
   
@@ -62,15 +66,17 @@ class VideoCell: UICollectionViewCell { //Ячейка
   
   let titleLabel: UILabel = {
     let label = UILabel()
-    label.backgroundColor = UIColor.purple
     label.translatesAutoresizingMaskIntoConstraints = false
+    label.text = "Marilyn Monro - Black space"
     return label
   }()
   
   let subtitleTextView: UITextView = {
     let textView = UITextView()
-    textView.backgroundColor = UIColor.red
     textView.translatesAutoresizingMaskIntoConstraints = false
+    textView.text = "MarilynMonro - 1,604,852,259 views - 2 years ago"
+    textView.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
+    textView.textColor = UIColor.lightGray
     return textView
   }()
   
@@ -99,13 +105,13 @@ class VideoCell: UICollectionViewCell { //Ячейка
     addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
 
     // top constraints
-    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 8))
+    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4))
     // left constraints
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
     // right constraints
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
     // height constraints
-    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
+    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
     
     
    // addConstraintsWithFormat(format: "V:[v0(20)]", views: titleLabel)
