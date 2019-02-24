@@ -60,9 +60,8 @@
 		AD337452222079DE00F8C03F /* YouTube */ = {
 			isa = PBXGroup;
 			children = (
-				AD33746C2221D8DE00F8C03F /* New Group */,
-				AD33746B2221D76700F8C03F /* Controller */,
 				AD3374682221D6F700F8C03F /* View */,
+				AD33746B2221D76700F8C03F /* Controller */,
 				AD3374652221D64F00F8C03F /* Helpers */,
 				AD337453222079DE00F8C03F /* AppDelegate.swift */,
 				AD337457222079DE00F8C03F /* Main.storyboard */,
@@ -85,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				AD3374692221D72C00F8C03F /* VideoCell.swift */,
+				AD33746D2221D8FD00F8C03F /* MenuBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,16 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				AD337455222079DE00F8C03F /* HomeController.swift */,
-				AD33746D2221D8FD00F8C03F /* MenuBar.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		AD33746C2221D8DE00F8C03F /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
