@@ -24,6 +24,13 @@ class BaseCell: UICollectionViewCell {
 
 class VideoCell: BaseCell { //Ячейка
   
+  var video : Video? {
+    didSet {
+      titleLabel.text = video?.title
+      thumbnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
+    }
+  }
+  
   let thumbnailImageView: UIImageView = { // эскиз изображения
     let imageView = UIImageView()
     imageView.image = UIImage(named: "homeWithDemon")

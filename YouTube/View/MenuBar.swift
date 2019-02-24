@@ -41,9 +41,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuCell
-    cell.imageView.image = UIImage(named: imageNames[indexPath.item])
-      //?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-    //cell.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13)
+    cell.imageView.image = UIImage(named: imageNames[indexPath.item])?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+    cell.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13)
     return cell
   }
   
@@ -75,9 +74,7 @@ class MenuCell: BaseCell {
   override var isHighlighted: Bool { // если выделена
     didSet {
       print("isHighlighted")
-      //imageView.tintColor = isHighlighted ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13)
       DispatchQueue.main.async {
-        //self.imageView.tintColor = self.isHighlighted ? UIColor.white: UIColor.black
         self.imageView.tintColor = self.isHighlighted ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13)
       }
     }
@@ -86,7 +83,6 @@ class MenuCell: BaseCell {
     didSet {
       print("isSelected")
       DispatchQueue.main.async {
-      //self.imageView.tintColor = self.isSelected ? UIColor.white: UIColor.black
         self.imageView.tintColor = self.isSelected ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13)
 
       }
