@@ -11,14 +11,24 @@ import UIKit
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
   var videos: [Video] = {
+    
+    var kanyeChannel = Channel() // канал
+    kanyeChannel.name = "Natasha Koroleva Igor Nikolaev"
+    kanyeChannel.profileImageName = "team"
+    
     var blankSpaceVideo = Video()
     blankSpaceVideo.title = "Marilyn Monro - Blank Space"
-    blankSpaceVideo.thumbnailImageName = "homeWithDemon"
+    blankSpaceVideo.thumbnailImageName = "homeWithDemon" // картинка
+    blankSpaceVideo.channel = kanyeChannel // канал
+    blankSpaceVideo.numberOfViews = 3453457632
     
     var badblondVideo = Video()
     badblondVideo.title = "Bad Blond - Hello world"
     badblondVideo.thumbnailImageName = "badBlond"
-    return [badblondVideo,blankSpaceVideo]
+    badblondVideo.channel = kanyeChannel
+    badblondVideo.numberOfViews = 53426367769
+    
+    return [badblondVideo, blankSpaceVideo]
   }()
   
   override func viewDidLoad() {

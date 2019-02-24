@@ -28,6 +28,18 @@ class VideoCell: BaseCell { //Ячейка
     didSet {
       titleLabel.text = video?.title
       thumbnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
+      
+      if let profileImageName = video?.channel?.profileImageName {
+        userProfileImageView.image = UIImage(named: profileImageName)
+      }
+      let numberFormatter = NumberFormatter()
+      numberFormatter.numberStyle = .decimal
+      
+      if let channelName = video?.channel?.name, let numberOfViews = video?.numberOfViews {
+        let subtitleText = "\(channelName) - \(numberFormatter.string(from: numberOfViews)!) - 2 years ago"
+        subtitleTextView.text = subtitleText
+      }
+      
     }
   }
   
