@@ -8,8 +8,14 @@
 
 import UIKit
 
-class Setting: NSObject {
+class Setting: NSObject { // модель ячеек
+  let name: String
+  let imageName: String
   
+  init(name: String, imageName: String) {
+    self.name = name
+    self.imageName = imageName
+  }
 }
 
 class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -24,6 +30,12 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
   }()
   
   let cellId = "cellId"
+  let cellHeight: CGFloat = 50
+  
+  let settings: [Setting] = {
+    
+    return [Setting(name: "Setting", imageName: "settings"), Setting(name: "Terms & privacy policy", imageName: "padlock"), Setting(name: "Send Facebook", imageName: "facebook"), Setting(name: "Help", imageName: "question"), Setting(name: "Switch Account", imageName: "user"), Setting(name: "Cancel", imageName: "cancel")]
+  }()
   
    func showSettings() {
     if let window = UIApplication.shared.keyWindow {
@@ -34,8 +46,9 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
       
       window.addSubview(blackView)
       window.addSubview(collectionView)
+       // динамическая высота окна
+      let height: CGFloat = CGFloat(settings.count) * cellHeight
       
-      let height: CGFloat = 200
       let y = window.frame.height - height
       collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
       
@@ -59,17 +72,18 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
     }
   }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return settings.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-    
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SettingCell
+    let setting = settings[indexPath.item]
+    cell.setting = setting
     return cell
   }
-  // высота елемента
+  // резмер елемента
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.frame.width, height: 50)
+    return CGSize(width: collectionView.frame.width, height: cellHeight)
   }
   // минимальный межстрочный интервал для секции в
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
