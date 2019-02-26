@@ -10,29 +10,72 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
-  var videos: [Video] = {
+//  var videos: [Video] = {
+//
+//    var kanyeChannel = Channel() // канал
+//    kanyeChannel.name = "Natasha Koroleva Igor Nikolaev"
+//    kanyeChannel.profileImageName = "team"
+//
+//    var blankSpaceVideo = Video()
+//    blankSpaceVideo.title = "Marilyn Monro - Blank Space"
+//    blankSpaceVideo.thumbnailImageName = "homeWithDemon" // картинка
+//    blankSpaceVideo.channel = kanyeChannel // канал
+//    blankSpaceVideo.numberOfViews = 3453457632
+//
+//    var badblondVideo = Video()
+//    badblondVideo.title = "Bad Blond - Hello world"
+//    badblondVideo.thumbnailImageName = "badBlond"
+//    badblondVideo.channel = kanyeChannel
+//    badblondVideo.numberOfViews = 53426367769
+//
+//    return [badblondVideo, blankSpaceVideo]
+//  }()
+  
+  var videos: [Video]?
+  
+  func fetchVideos() { //открывает джейсон
     
-    var kanyeChannel = Channel() // канал
-    kanyeChannel.name = "Natasha Koroleva Igor Nikolaev"
-    kanyeChannel.profileImageName = "team"
+    let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
+    URLSession.shared.dataTask(with: url! as URL) { (data, response, error) in
+      if error != nil {
+        print(error)
+        return
+      }
+      do {
+        let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+        
+        self.videos = [Video]()
+        
+        for dictionary in json as! [[String: AnyObject]] {
+          
+          let video = Video()
+          video.title = dictionary["title"] as? String
+          video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
+          
+          let channelDictionary = dictionary["channel"] as! [String: AnyObject]
+          
+          let channel = Channel()
+          channel.name = channelDictionary["name"] as? String
+          channel.profileImageName = channelDictionary["profile_image_name"] as? String
+          video.channel = channel
+          
+          self.videos?.append(video)
+        }
+        DispatchQueue.main.async {
+           self.collectionView?.reloadData()
+        }
+      } catch let jsonError {
+        print(jsonError)
+      }
+      }.resume()
     
-    var blankSpaceVideo = Video()
-    blankSpaceVideo.title = "Marilyn Monro - Blank Space"
-    blankSpaceVideo.thumbnailImageName = "homeWithDemon" // картинка
-    blankSpaceVideo.channel = kanyeChannel // канал
-    blankSpaceVideo.numberOfViews = 3453457632
-    
-    var badblondVideo = Video()
-    badblondVideo.title = "Bad Blond - Hello world"
-    badblondVideo.thumbnailImageName = "badBlond"
-    badblondVideo.channel = kanyeChannel
-    badblondVideo.numberOfViews = 53426367769
-    
-    return [badblondVideo, blankSpaceVideo]
-  }()
+  }
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    fetchVideos()
     
     navigationItem.title = "Home"
     navigationController?.navigationBar.isTranslucent = false
@@ -68,7 +111,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
   
   @objc func handleMore() {
     print("handleMore")
-
   }
   @objc func handleSearch() {
     print("handleSearch")
@@ -83,15 +125,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
     view.addConstraintsWithFormat(format: "V:|[v0(50)]|", views: menuBar)
   }
-  
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return videos.count
+    return videos?.count ?? 0
   }
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
-    
-    cell.video = videos[indexPath.item]
-    
+    cell.video = videos?[indexPath.item]
     return cell
   }
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
