@@ -67,16 +67,16 @@ class VideoCell: BaseCell { //Ячейка
       thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageUrl)
     }
   }
-  let thumbnailImageView: UIImageView = { // эскиз изображения видео
-    let imageView = UIImageView()
+  let thumbnailImageView: CustomImageView = { // эскиз изображения видео
+    let imageView = CustomImageView()
     imageView.image = UIImage(named: "homeWithDemon")
     imageView.contentMode = .scaleAspectFill
     imageView.clipsToBounds = true
     return imageView
   }()
   
-  let userProfileImageView: UIImageView = {
-    let imageView = UIImageView()
+  let userProfileImageView: CustomImageView = {
+    let imageView = CustomImageView()
     imageView.image = UIImage(named: "monro")
     imageView.contentMode = .scaleAspectFill
     imageView.layer.cornerRadius = 22 // круговое вю, коловина высоты
