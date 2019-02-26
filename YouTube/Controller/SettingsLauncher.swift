@@ -8,7 +8,11 @@
 
 import UIKit
 
-class SettingsLauncher: NSObject {
+class Setting: NSObject {
+  
+}
+
+class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
   let blackView = UIView()
   
@@ -18,6 +22,8 @@ class SettingsLauncher: NSObject {
     cv.backgroundColor = UIColor.white
     return cv
   }()
+  
+  let cellId = "cellId"
   
    func showSettings() {
     if let window = UIApplication.shared.keyWindow {
@@ -52,7 +58,29 @@ class SettingsLauncher: NSObject {
       }
     }
   }
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 4
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+    
+    return cell
+  }
+  // высота елемента
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.frame.width, height: 50)
+  }
+  // минимальный межстрочный интервал для секции в
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 0
+  }
   override init() {
     super.init()
+    
+    collectionView.dataSource = self
+    collectionView.delegate = self
+                       // загрузка ячейки
+    collectionView.register(SettingCell.self, forCellWithReuseIdentifier: cellId)
   }
 }

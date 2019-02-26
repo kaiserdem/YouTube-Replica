@@ -25,7 +25,6 @@ extension UIView {
     }
     
     addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
-    
   }
 }
 let imageChach = NSCache<AnyObject, AnyObject>()
