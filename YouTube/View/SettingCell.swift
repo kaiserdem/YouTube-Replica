@@ -17,7 +17,6 @@ class SettingCell: BaseCell { // ячейка из кнопки настройк
         self.nameLabel.textColor = self.isSelected ? UIColor.white : .black
         self.iconImageView.tintColor = self.isSelected ? UIColor.white : .black
       }
-      print(isSelected)
     }
   }
   
