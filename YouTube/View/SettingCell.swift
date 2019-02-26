@@ -23,7 +23,7 @@ class SettingCell: BaseCell { // ячейка из кнопки настройк
   
   var setting: Setting? {
     didSet {
-      nameLabel.text = setting?.name
+      nameLabel.text = setting?.name.rawValue
       if let imageName = setting?.imageName {
         iconImageView.image = UIImage(named: imageName)?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         iconImageView.tintColor = UIColor.darkGray

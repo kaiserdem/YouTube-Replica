@@ -9,15 +9,23 @@
 import UIKit
 
 class Setting: NSObject { // модель ячеек
-  let name: String
+  let name: SettingName
   let imageName: String
   
-  init(name: String, imageName: String) {
+  init(name: SettingName, imageName: String) {
     self.name = name
     self.imageName = imageName
+    
   }
 }
-
+enum SettingName: String {
+  case Cancel = "Cancel & Dismiss"
+  case Settings = "Setting"
+  case TermsPrivacy = "Terms & privacy policy"
+  case SendFeedback = "Send Feedback"
+  case Help = "Help"
+  case SwitchAccount = "Switch Account"
+}
 class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
   let blackView = UIView()
@@ -34,7 +42,10 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
   
   let settings: [Setting] = {
     
-    return [Setting(name: "Setting", imageName: "settings"), Setting(name: "Terms & Privacy policy", imageName: "padlock"), Setting(name: "Send Facebook", imageName: "facebook"), Setting(name: "Help", imageName: "question"), Setting(name: "Switch Account", imageName: "user"), Setting(name: "Cancel", imageName: "cancel")]
+    let settingsSetting = Setting(name: .Settings, imageName: "settings")
+    let cancelSetting = Setting(name: .Cancel, imageName: "cancel")
+    
+    return [settingsSetting, Setting(name: .TermsPrivacy, imageName: "padlock"), Setting(name: .SendFeedback, imageName: "head"), Setting(name: .Help, imageName: "help"),Setting(name: .SwitchAccount, imageName: "user"), cancelSetting]
   }()
   
   var homeController: HomeController?
@@ -74,7 +85,7 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
         self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
       }
     }) { (completed: Bool) in
-      if setting.name != "" && setting.name != "Cancel" { // не вызывать при это елементе
+      if setting.name != .Cancel { // не вызывать при это елементе
         self.homeController?.showControllerForSetting(setting: setting)
       }
     }
