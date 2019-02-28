@@ -56,8 +56,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
   }
                      // выбрал ячейку бара по индексу
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-    
+    /*
     // граница выбора 1/4
     let x = CGFloat(indexPath.item) * frame.width / 4
     horizontalBarLeftAnchorConstaint?.constant = x
@@ -66,6 +65,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
       self.layoutIfNeeded()
     }, completion: nil)
+ */
                         // скрол по индексу
     homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
     

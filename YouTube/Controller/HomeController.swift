@@ -9,24 +9,13 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-  
-  var videos: [Video]?
-  
+    
   let cellId = "cellId"
   
-  func fetchVideos() { // открывает джейсон
-    
-    ApiService.sharedInstance.fetchVides { (videos: [Video]) in
-      self.videos = videos
-      DispatchQueue.main.async {
-      self.collectionView?.reloadData()
-      }
-    }
-  }
+  let titles = ["Home", "Trending", "Subscriptions", "Account"]
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    fetchVideos()
     
     navigationController?.navigationBar.isTranslucent = false
     
@@ -45,13 +34,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
       flowLayout.scrollDirection = .horizontal
-      flowLayout.minimumLineSpacing = 1 // реборо ячейки
+      flowLayout.minimumLineSpacing = 0 // реборо ячейки
     }
     collectionView?.backgroundColor = UIColor.white
-    
-    //collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
-    
-    collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+  
+    collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
     
     collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
@@ -97,11 +84,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     print("handleSearch")
   }
   
-  func scrollToMenuIndex(menuIndex: Int) { // скрол меня по индексу
+  func scrollToMenuIndex(menuIndex: Int) { // скрол меню по индексу
     let indexPath = NSIndexPath(item: menuIndex, section: 0)
     collectionView?.scrollToItem(at: indexPath as IndexPath, at: .init(rawValue: 0), animated: true)
+    
+    setTitleForIndex(menuIndex)
   }
-  
+  private func setTitleForIndex(_ index: Int) { // задать титул по индексу
+    if let titleLabel =  navigationItem.titleView as? UILabel {
+      titleLabel.text = " \(titles[index])"
+    }
+  }
   lazy var menuBar: MenuBar = {
     let mb = MenuBar()
     mb.homeController = self
@@ -129,52 +122,32 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     print(scrollView.contentOffset.x)
     menuBar.horizontalBarLeftAnchorConstaint?.constant = scrollView.contentOffset.x / 4
   }
-                      // количество предметов в разделе раздела
+                  // прокрутка закончится перетаскиванием, со скоростью
+  override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+                    // целевой контент отключен
+    let index = targetContentOffset.pointee.x / view.frame.width
+
+    let indexPath = NSIndexPath(item: Int(index), section: 0)
+    menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: .top)
+    
+//    if let titleLabel =  navigationItem.titleView as? UILabel {
+//      titleLabel.text = " \(titles[Int(index)])"
+//    }
+    setTitleForIndex(Int(index))
+  }
+                          // количество предметов в разделе раздела
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return 4
   }
-                  // прокрутка закончится перетаскиванием, со скоростью
-  override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-    
-    let index = targetContentOffset.pointee.y / view.frame.width
-
-    
-    let indexPath = NSIndexPath(item: Int(index), section: 0)
-    menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: .init(rawValue: 0))
-
-//    view.frame.width
-//    
-//    print(targetContentOffset.pointee.x)
-  }
                      // ячейка для элемента с индексом
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
     
-    let colors: [UIColor] = [.blue, .green, .orange, .gray, .yellow]
-    
-    cell.backgroundColor = colors[indexPath.item]
     return cell
   }
                //   размер для элемента в индексе
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: view.frame.width, height: view.frame.height)
+    return CGSize(width: view.frame.width, height: view.frame.height - 50)
   }
-//  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//    return videos?.count ?? 0
-//  }
-//  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
-//    cell.video = videos?[indexPath.item]
-//    return cell
-//  }
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//    let height = (view.frame.width - 16 - 16) * 9 / 16
-//    return CGSize(width: view.frame.width, height: height + 16 + 88)
-//  }
-//           // минимальный межстрочный интервал для секции в
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//    return 0
-//  }
 }
-
-       // данные не отображаються

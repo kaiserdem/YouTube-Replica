@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AD2CF28222280BA2001E50AC /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CF28122280BA2001E50AC /* ApiService.swift */; };
+		AD2CF28422283206001E50AC /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CF28322283206001E50AC /* FeedCell.swift */; };
 		AD337454222079DE00F8C03F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD337453222079DE00F8C03F /* AppDelegate.swift */; };
 		AD337456222079DE00F8C03F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD337455222079DE00F8C03F /* HomeController.swift */; };
 		AD337459222079DE00F8C03F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD337457222079DE00F8C03F /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		AD2CF28122280BA2001E50AC /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		AD2CF28322283206001E50AC /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		AD337450222079DE00F8C03F /* YouTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD337453222079DE00F8C03F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD337455222079DE00F8C03F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				AD3374692221D72C00F8C03F /* VideoCell.swift */,
 				AD33746D2221D8FD00F8C03F /* MenuBar.swift */,
 				ADE9A70E22259155000C5E92 /* SettingCell.swift */,
+				AD2CF28322283206001E50AC /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD337456222079DE00F8C03F /* HomeController.swift in Sources */,
+				AD2CF28422283206001E50AC /* FeedCell.swift in Sources */,
 				AD3374712222DD8800F8C03F /* Video.swift in Sources */,
 				ADE9A70F22259155000C5E92 /* SettingCell.swift in Sources */,
 				AD33746A2221D72C00F8C03F /* VideoCell.swift in Sources */,
