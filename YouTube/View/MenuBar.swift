@@ -22,6 +22,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
   let cellId = "cellId"
   let imageNames = ["home", "trending", "subscriptions", "account"]
   
+  var homeController: HomeController? // ссылка на другой контроллер
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
@@ -52,16 +54,21 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
     horizontalBarView.heightAnchor.constraint(equalToConstant: 8).isActive = true
   }
-  
+                     // выбрал ячейку бара по индексу
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    
+    // граница выбора 1/4
     let x = CGFloat(indexPath.item) * frame.width / 4
     horizontalBarLeftAnchorConstaint?.constant = x
+    
                     // передвижение по анимации
     UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
       self.layoutIfNeeded()
     }, completion: nil)
+                        // скрол по индексу
+    homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
     
-   
   }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return 4

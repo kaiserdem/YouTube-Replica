@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     
     let layout = UICollectionViewFlowLayout()
+   // layout.scrollDirection = .horizontal // горизонталтно скролить
     window?.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
     
     // get rid bar of black bar underneath navbar
