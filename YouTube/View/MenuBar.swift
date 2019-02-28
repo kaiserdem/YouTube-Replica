@@ -56,7 +56,12 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let x = CGFloat(indexPath.item) * frame.width / 4
     horizontalBarLeftAnchorConstaint?.constant = x
-    return
+                    // передвижение по анимации
+    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+      self.layoutIfNeeded()
+    }, completion: nil)
+    
+   
   }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return 4
@@ -78,8 +83,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     return 0
   }
   
-  
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

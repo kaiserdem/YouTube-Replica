@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD2CF28222280BA2001E50AC /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CF28122280BA2001E50AC /* ApiService.swift */; };
 		AD337454222079DE00F8C03F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD337453222079DE00F8C03F /* AppDelegate.swift */; };
 		AD337456222079DE00F8C03F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD337455222079DE00F8C03F /* HomeController.swift */; };
 		AD337459222079DE00F8C03F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD337457222079DE00F8C03F /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD2CF28122280BA2001E50AC /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		AD337450222079DE00F8C03F /* YouTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD337453222079DE00F8C03F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD337455222079DE00F8C03F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD2CF28022280B67001E50AC /* ApiService */ = {
+			isa = PBXGroup;
+			children = (
+				AD2CF28122280BA2001E50AC /* ApiService.swift */,
+			);
+			path = ApiService;
+			sourceTree = "<group>";
+		};
 		AD337447222079DE00F8C03F = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 		AD337452222079DE00F8C03F /* YouTube */ = {
 			isa = PBXGroup;
 			children = (
+				AD2CF28022280B67001E50AC /* ApiService */,
 				AD33746F2222DD4500F8C03F /* Model */,
 				AD3374682221D6F700F8C03F /* View */,
 				AD33746B2221D76700F8C03F /* Controller */,
@@ -190,6 +201,7 @@
 				ADE9A70F22259155000C5E92 /* SettingCell.swift in Sources */,
 				AD33746A2221D72C00F8C03F /* VideoCell.swift in Sources */,
 				ADE9A70D2225736B000C5E92 /* SettingsLauncher.swift in Sources */,
+				AD2CF28222280BA2001E50AC /* ApiService.swift in Sources */,
 				AD3374672221D68000F8C03F /* Extensions.swift in Sources */,
 				AD337454222079DE00F8C03F /* AppDelegate.swift in Sources */,
 				AD33746E2221D8FD00F8C03F /* MenuBar.swift in Sources */,
