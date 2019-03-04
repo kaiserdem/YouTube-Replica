@@ -20,6 +20,7 @@
 		AD33746A2221D72C00F8C03F /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3374692221D72C00F8C03F /* VideoCell.swift */; };
 		AD33746E2221D8FD00F8C03F /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD33746D2221D8FD00F8C03F /* MenuBar.swift */; };
 		AD3374712222DD8800F8C03F /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3374702222DD8800F8C03F /* Video.swift */; };
+		AD513429222BD78A00462E4D /*  VideoLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD513428222BD78A00462E4D /*  VideoLauncher.swift */; };
 		ADE9A70D2225736B000C5E92 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9A70C2225736B000C5E92 /* SettingsLauncher.swift */; };
 		ADE9A70F22259155000C5E92 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9A70E22259155000C5E92 /* SettingCell.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		AD3374692221D72C00F8C03F /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		AD33746D2221D8FD00F8C03F /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		AD3374702222DD8800F8C03F /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		AD513428222BD78A00462E4D /*  VideoLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " VideoLauncher.swift"; sourceTree = "<group>"; };
 		ADE9A70C2225736B000C5E92 /* SettingsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
 		ADE9A70E22259155000C5E92 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				AD3374662221D68000F8C03F /* Extensions.swift */,
+				AD513428222BD78A00462E4D /*  VideoLauncher.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				ADE9A70D2225736B000C5E92 /* SettingsLauncher.swift in Sources */,
 				AD2CF28222280BA2001E50AC /* ApiService.swift in Sources */,
 				AD3374672221D68000F8C03F /* Extensions.swift in Sources */,
+				AD513429222BD78A00462E4D /*  VideoLauncher.swift in Sources */,
 				AD337454222079DE00F8C03F /* AppDelegate.swift in Sources */,
 				AD33746E2221D8FD00F8C03F /* MenuBar.swift in Sources */,
 			);
